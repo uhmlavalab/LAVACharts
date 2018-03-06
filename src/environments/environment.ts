@@ -4,5 +4,13 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase : {
+    apiKey: 'AIzaSyAgdrv97HInRA4uuMBPiqAofxD1idH_Y9s',
+    authDomain: 'lavacharts.firebaseapp.com',
+    databaseURL: 'https://lavacharts.firebaseio.com',
+    projectId: 'lavacharts',
+    storageBucket: '',
+    messagingSenderId: '419996622127'
+  },
 };
