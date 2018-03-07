@@ -1,0 +1,79 @@
+.app-container {
+  width: 100%;
+  min-height: calc(100vh - 40px - 40px) !important;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.app-sidenav-content {
+  padding: 8px;
+  width: flex;
+  height: calc(100vh - 40px - 40px);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.app-sidenav {
+  padding: 8px;
+  width: 225px;
+  box-shadow: 10px 0px 20px 2px rgba(202, 199, 199, 0.2), 
+              2px 0px 6px 3px rgba(125, 125, 125, 0.14), 
+              1px 0px 10px 0px rgba(23, 22, 22, 0.12)
+}
+
+.button-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.mat-toolbar {
+  height: 40px;
+}
+
+.mat-raised-button{
+  width: 100%;
+  margin-top: 8px;
+}
+
+.mat-form-field {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.mat-slider {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.vertical-spacer {
+  flex-grow: 1;
+}
+
+.mat-grid-list {
+  margin-top: 8px;
+}
+
+.account-drawer {
+  flex-direction: column;
+  display: flex;
+  height: calc(100% - 56px);
+}
+
+.map-thumbnail {
+  height: 75%;
+  width: 75%;
+  top: 3px;
+  border-color: #ffffff;
+  border-style: solid;
+  border-width: 3px;
+  border-radius: 50%;
+  box-shadow:  0 3px 7px 1px rgba(0, 0, 0, 0.25), 
+               0 2px 2px 0px rgba(0, 0, 0, 0.25), 
+               0 1px 5px 0 rgba(0, 0, 0, 0.25);
+}
+
+.drawer-toggle {
+  top: 10px;
+  position: absolute;
+}

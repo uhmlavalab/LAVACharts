@@ -1,13 +1,183 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<ul>
-  <li class="text" *ngFor="let item of items | async">
-    {{item.name}}
-  </li>
-</ul>
+<mat-toolbar color="primary">
+  <span> {{ title }} </span>
+</mat-toolbar>
 
+<mat-drawer-container class="app-container">
+  
+  <mat-drawer #drawer class="app-sidenav" mode="side">
+
+    <div class="button-row">
+      <button mat-icon-button [color]="accountColor" (click)="sidebarChange('account')">
+        <mat-icon>person</mat-icon>
+      </button>
+      <button mat-icon-button [color]="chartColor" (click)="sidebarChange('chart')">
+        <mat-icon>timeline</mat-icon>
+      </button>
+      <button mat-icon-button [color]="mapColor" (click)="sidebarChange('map')">
+        <mat-icon>map</mat-icon>
+      </button>
+    </div>
+
+    <mat-divider style="margin-top: 8px"></mat-divider>
+
+    <!-- Account Sidenav -->
+    <div *ngIf="selectedDrawer === 'account'" class='account-drawer'>
+
+      <mat-form-field>
+        <mat-select placeholder="Session">
+          <mat-option *ngFor="let session of sessions" [value]="session.value">
+            {{ session.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary">Load Session</button>
+      <p class="vertical-spacer"></p>
+      <button mat-raised-button color="warn" style="color: white;">Logout</button>
+    </div>
+
+    <!-- Chart Sidenav -->
+    <div *ngIf="selectedDrawer === 'chart'">
+
+      <mat-grid-list cols="3" rows="3">
+        <mat-grid-tile>
+          <button mat-icon-button color="warn">
+            <mat-icon>insert_chart</mat-icon>
+          </button>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <button mat-icon-button color="warn">
+            <mat-icon>show_chart</mat-icon>
+          </button>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <button mat-icon-button color="warn">
+            <mat-icon>pie_chart</mat-icon>
+          </button>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <button mat-icon-button color="primary">
+            <mat-icon>bubble_chart</mat-icon>
+          </button>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <button mat-icon-button color="warn">
+            <mat-icon>insert_chart</mat-icon>
+          </button>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <button mat-icon-button disabled>
+            <mat-icon>show_chart</mat-icon>
+          </button>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <button mat-icon-button disabled>
+            <mat-icon>pie_chart</mat-icon>
+          </button>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <button mat-icon-button color="warn">
+            <mat-icon>bubble_chart</mat-icon>
+          </button>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <button mat-icon-button disabled>
+            <mat-icon>show_chart</mat-icon>
+          </button>
+        </mat-grid-tile>
+      </mat-grid-list>
+
+      <mat-form-field>
+        <mat-select placeholder="Data">
+          <mat-option *ngFor="let d of data" [value]="d.viewValue">
+            {{ d.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select placeholder="X Value">
+          <mat-option *ngFor="let name of fields" [value]="name.viewValue">
+            {{ name.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select placeholder="Y Value">
+          <mat-option *ngFor="let name of fields" [value]="name.viewValue">
+            {{ name.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select placeholder="Z Value">
+          <mat-option *ngFor="let name of fields" [value]="name.viewValue">
+            {{ name.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary">Create Chart</button>
+
+    </div>
+
+    <!-- Map Sidenav -->
+    <div *ngIf="selectedDrawer === 'map'">
+      <mat-grid-list cols="3" rows="1">
+        <mat-grid-tile>
+          <img src="./assets/mapthumbnails/street.png" class="map-thumbnail">
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <img src="./assets/mapthumbnails/satellite.png" style="border-color:#28608d;" class="map-thumbnail">
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <img src="./assets/mapthumbnails/terrain.png" class="map-thumbnail">
+        </mat-grid-tile>
+      </mat-grid-list>
+
+      <button mat-raised-button color="primary">Add New Layer</button>
+
+      <mat-grid-list cols="1" rows="4" rowHeight="40px">
+        <mat-grid-tile>
+          <mat-checkbox color="primary" style="width: 80%">Layer 1
+          </mat-checkbox>
+          <input type="color" id="html5colorpicker" value="#66c2a5" style="width:20%;">
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-checkbox color="primary" style="width: 80%">Layer 2
+          </mat-checkbox>
+          <input type="color" id="html5colorpicker" value="#fc8d62" style="width:20%;">
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-checkbox color="primary" style="width: 80%">Layer 3
+          </mat-checkbox>
+          <input type="color" id="html5colorpicker" value="#8da0cb" style="width:20%;">
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-checkbox color="primary" style="width: 80%">Layer 4
+          </mat-checkbox>
+          <input type="color" id="html5colorpicker" value="#e78ac3" style="width:20%;">
+        </mat-grid-tile>
+      </mat-grid-list>
+
+      <button mat-raised-button color="primary">Create Map</button>
+
+    </div>
+
+  </mat-drawer>
+
+  <div class="app-sidenav-content">
+
+    <button mat-icon-button class="drawer-toggle" (click)="drawer.toggle(); drawerToggle();" color="primary">
+      <mat-icon *ngIf="!drawerOpen">keyboard_arrow_right</mat-icon>
+      <mat-icon *ngIf="drawerOpen">keyboard_arrow_left</mat-icon>
+    </button>
+    
+  </div>
+
+</mat-drawer-container>
+
+
+<mat-toolbar color="primary"></mat-toolbar>

@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
 import { FirebaseModule } from './modules/firebase.module';
+import { MaterialModule } from './modules/material.module';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { FirebaseModule } from './modules/firebase.module';
   imports: [
     BrowserModule,
     FirebaseModule,
+    MaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
